@@ -1,0 +1,71 @@
+<div class="row justify-content-sm-center homeWrapper">
+  <div class="col-12 col-sm-8 bg-light">
+    <div
+      class="container d-flex flex-wrap justify-content-center py-3 border-bottom"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
+      >
+        <span class="fs-4">Transactions Exp.1</span>
+      </a>
+      <div class="col-12 col-lg-auto mb-lg-0">
+        <button
+          type="button"
+          id="createTransactionBtn"
+          class="btn btn-primary w-100"
+          (click)="createTransaction()"
+        >
+          Create Transaction
+        </button>
+      </div>
+    </div>
+    <!-- example 2 -->
+    <div
+      class="container d-flex flex-wrap justify-content-center py-3 border-bottom"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
+      >
+        <span class="fs-4">Transactions Exp.2</span>
+      </a>
+      <div class="col-12 col-lg-auto mb-lg-0">
+        <div class="input-group">
+          <input
+            type="number"
+            min="1"
+            class="form-control"
+            [(ngModel)]="idToLoad"
+            placeholder="Enter transaction id"
+            aria-label="Enter transaction id"
+            aria-describedby="getTransactionBtn"
+          />
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="getTransactionBtn"
+            (click)="getTransaction()"
+            [disabled]="!idToLoad"
+          >
+            Get Transaction
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- content -->
+    <ng-container *ngIf="transactions$ | async as transactions">
+      <div
+        class="card text-white bg-primary mb-3"
+        *ngFor="let transaction of transactions"
+      >
+        <div class="card-header">Demo</div>
+        <div class="card-body">
+          <p class="card-text">
+            {{ transaction | json }}
+          </p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
